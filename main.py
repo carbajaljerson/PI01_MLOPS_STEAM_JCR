@@ -186,7 +186,7 @@ def recomendacion(idItem:str):
     simScores = sorted(simScores, key=lambda x: x[1], reverse=True)
     
     # Obtener las puntuaciones de los 10 juegos más similares
-    simScores = simScores[1:11]
+    simScores = simScores[1:6]
     
     # Obtener los  indices de los juegos
     itemIndices = [i[0] for i in simScores]
