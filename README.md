@@ -4,7 +4,11 @@
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![Plotly](https://img.shields.io/badge/Plotly-%233F4F75.svg?style=for-the-badge&logo=plotly&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white) ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
 
-<br/>
+
+<p align=center>
+<img src="src\logo.png" height = 150 weight=250>
+
+<p><br/>
 El actual repositorio es usado para el deploy en Render del Proyecto Individual de Steam.
 
 En el siguiente enlace se encuentran los demás archivos desarrollados para el proyecto [enlace de GitHub](https://github.com/carbajaljerson/PI01_DATA_FT14) aquí se ubica ubican las ## Notebooks que sirvieron para el proceso de ETL, EDA , y consolidación de DataSets.
