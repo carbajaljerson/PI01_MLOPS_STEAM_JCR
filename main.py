@@ -161,7 +161,7 @@ def sentiment_analysis(year:int):
     return {'Negativo': int(negativo) ,'Neutral': int(neutral), 'Positve':int(positivo)}
 
 
-@app.get('/recomendacionGame/')
+@app.get('/recommendGame/')
 def recomendacion_juego(idItem:str):
     
     #Min_df requiere que un término aparezca para que se considere parte del vocabulario.
@@ -201,7 +201,7 @@ def recomendacion_juego(idItem:str):
     
     return dict(enumerate(result.flatten(), 1))
 
-@app.get('/recomendacionUser/')
+@app.get('/recommendUser/')
 def recomendacion_usuario(idUser:str):
        
     def get_similar(item,rating):
@@ -209,8 +209,8 @@ def recomendacion_usuario(idUser:str):
         similar_ratings = similar_ratings.sort_values(ascending=False)
         return similar_ratings
     
-    dataItemUser=dataItemUser[dataItemUser['user_id']==idUser] 
-    items = dataItemUser.values.tolist()
+    dataUser=dataItemUser[dataItemUser['user_id']==idUser] 
+    items = dataUser.values.tolist()
     
     similar_items = pd.DataFrame()
     for item,rating in items:
