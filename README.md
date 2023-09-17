@@ -7,7 +7,7 @@
 
 <p align=center><img src="src\logo.png" height = 150 weight=250><p><br/>
 
-# <h1 align="center">**`Siniestros Viales en la Ciudad Atónoma de Buenos Aires (CABA)`**</h1>
+# <h1 align="center">**Proyecto Individual Machine Learning Operations (MLOps)**</h1>
 
 El actual repositorio es usado para el deploy en Render del Proyecto Individual de Steam.
 
