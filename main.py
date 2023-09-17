@@ -158,7 +158,7 @@ def sentiment_analysis(year:int):
         elif (i==0):
             negativo = valor
 
-    return {'Negativo': int(negativo) ,'Neutral': int(neutral), 'Positve':int(positivo)}
+    return {'Negativo': int(negativo) ,'Neutral': int(neutral), 'Positvo':int(positivo)}
 
 
 @app.get('/recommendGame/')
@@ -210,6 +210,11 @@ def recomendacion_usuario(idUser:str):
         return similar_ratings
     
     dataUser=dataItemUser[dataItemUser['user_id']==idUser] 
+    
+    dataUser=dataUser[['item_id','metascore']]
+    dataUser=dataUser.drop_duplicates()
+    dataUser=dataUser.reset_index(drop=True)
+    
     items = dataUser.values.tolist()
     
     similar_items = pd.DataFrame()
@@ -225,6 +230,6 @@ def recomendacion_usuario(idUser:str):
             if (item==dataItemName.iloc[i]['item_id']):
                 rowresult.append(dataItemName.iloc[i]['app_name'])
                 
-    return  {rowresult}
+    return {'Top 5 Games':rowresult}
     
 #uvicorn main:app
