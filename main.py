@@ -38,10 +38,18 @@ with open("data/dataSentiment.pkl", "rb") as file7:
 with open("data/dataRecomend.pkl", "rb") as file8:
     dataRecomend= pickle.load(file8)
 
+with open("data/dataRelation.pkl", "rb") as file9:
+    dataRelation= pickle.load(file9)
 
-#@app.get('/')
-# def index():
-# return {'message': 'Proyecto Individual de Jerson Carbajal Ramirez'}
+with open("data/dataItemUser.pkl", "rb") as file10:
+    dataItemUser= pickle.load(file10)
+    
+with open("data/dataItemName.pkl", "rb") as file:
+    dataItemName= pickle.load(file)
+    
+@app.get('/')
+def index():
+    return {'message': 'Proyecto Individual de Jerson Carbajal Ramirez'}
 
 
 @app.get('/{name}')
@@ -154,7 +162,7 @@ def sentiment_analysis(year:int):
 
 
 @app.get('/recomendacion/')
-def recomendacion(idItem:str):
+def recomendacion_juego(idItem:str):
     
     #Min_df requiere que un término aparezca para que se considere parte del vocabulario.
     #Max_df excluye términos que son demasiado frecuentes y que es poco probable que ayuden a predecir la etiqueta
@@ -173,10 +181,7 @@ def recomendacion(idItem:str):
         
     #Asignar vectores de características a item_id   
     indices = pd.Series(dataRecomend.index, index=dataRecomend['item_id']).drop_duplicates()
-    
-    #if (indices[idItem].size > 1):
-    #    idx =indices[idItem].iloc[0]
-    #else:
+     
     idx = indices[idItem]
     
     # Obtener las puntuaciones de similitud por pares
@@ -196,5 +201,27 @@ def recomendacion(idItem:str):
     
     return dict(enumerate(result.flatten(), 1))
 
-
+@app.get('/recomendacion/')
+def recomendacion_usuario(idUser:str):
+       
+    def get_similar(item,rating):
+        similar_ratings = dataRelation[item]*(rating-2.5)
+        similar_ratings = similar_ratings.sort_values(ascending=False)
+        return similar_ratings
+    
+    dataItemUser=dataItemUser[dataItemUser['user_id']==idUser] 
+    items = dataItemUser.values.tolist()
+    
+    similar_items = pd.DataFrame()
+    for item,rating in items:
+        similar_items = similar_items._append(get_similar(item,rating),ignore_index = True)
+        
+    result =similar_items.sum().sort_values(ascending=False).head(5)
+    
+    
+    for item in result.index:
+        for i in range(len(dataItemName)):
+            if (item==dataItemName.iloc[i]['item_id']):
+                print(dataItemName.iloc[i]['app_name'])
+    
 #uvicorn main:app
