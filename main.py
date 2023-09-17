@@ -161,7 +161,7 @@ def sentiment_analysis(year:int):
     return {'Negativo': int(negativo) ,'Neutral': int(neutral), 'Positve':int(positivo)}
 
 
-@app.get('/recomendacion/')
+@app.get('/recomendacionGame/')
 def recomendacion_juego(idItem:str):
     
     #Min_df requiere que un término aparezca para que se considere parte del vocabulario.
@@ -201,7 +201,7 @@ def recomendacion_juego(idItem:str):
     
     return dict(enumerate(result.flatten(), 1))
 
-@app.get('/recomendacion/')
+@app.get('/recomendacionUser/')
 def recomendacion_usuario(idUser:str):
        
     def get_similar(item,rating):
