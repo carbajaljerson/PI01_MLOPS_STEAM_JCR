@@ -218,10 +218,13 @@ def recomendacion_usuario(idUser:str):
         
     result =similar_items.sum().sort_values(ascending=False).head(5)
     
+    rowresult = []
     
     for item in result.index:
         for i in range(len(dataItemName)):
             if (item==dataItemName.iloc[i]['item_id']):
-                print(dataItemName.iloc[i]['app_name'])
+                rowresult.append(dataItemName.iloc[i]['app_name'])
+                
+    return  {rowresult}
     
 #uvicorn main:app
