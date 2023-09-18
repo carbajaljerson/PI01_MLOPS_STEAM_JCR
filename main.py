@@ -162,7 +162,7 @@ def sentiment_analysis(year:int):
 
 
 @app.get('/recommendGame/')
-def recomendacion_juego(idItem:str):
+def recommendGame(idItem:str):
     
     #Min_df requiere que un término aparezca para que se considere parte del vocabulario.
     #Max_df excluye términos que son demasiado frecuentes y que es poco probable que ayuden a predecir la etiqueta
@@ -202,7 +202,7 @@ def recomendacion_juego(idItem:str):
     return dict(enumerate(result.flatten(), 1))
 
 @app.get('/recommendUser/')
-def recomendacion_usuario(idUser:str):
+def recommendUser(idUser:str):
        
     def get_similar(item,rating):
         similar_ratings = dataRelation[item]*(rating-2.5)
@@ -212,8 +212,6 @@ def recomendacion_usuario(idUser:str):
     dataUser=dataItemUser[dataItemUser['user_id']==idUser] 
     
     dataUser=dataUser[['item_id','metascore']]
-    dataUser=dataUser.drop_duplicates()
-    dataUser=dataUser.reset_index(drop=True)
     
     items = dataUser.values.tolist()
     
